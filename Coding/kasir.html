@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kasir</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Nunito:wght@300;400;600;700&display=swap" 
+rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+    
+    <div class="header-left">
+        <img src="logo_hmtk.png" class="logo-header">
+        <h1>KASIR HMTK</h1>
+    </div>
+
+    <div class="header-right">
+
+
+        <!-- MENU DROPDOWN -->
+        <div class="dropdown">
+            <button class="dropbtn">Laporan</button>
+            <div class="dropdown-content">
+                <a href="chart.html">Grafik Penjualan</a>
+                <a href="history.html">Riwayat Transaksi</a>
+            </div>
+        </div>
+
+        <button id="manageUsersBtn" class="btn-primary">Kelola User</button>
+        <button id="logoutBtn" class="btn-danger">Logout</button>
+    </div>
+</div>
+
+<!-- MAIN -->
+<div class="main-container">
+
+    <!-- MENU LIST -->
+    <div class="card">
+        <h2>Menu</h2>
+
+        <!-- FILTER KATEGORI BARU -->
+        <select id="kategoriFilter" class="filter-kategori">
+            <option value="semua">Semua Kategori</option>
+            <option value="makanan">Makanan</option>
+            <option value="minuman">Minuman</option>
+        </select>
+
+        <div id="menuList" class="menu-grid"></div>
+
+        <button id="openAddMenu" class="btn-success" style="margin-top: 14px;">
+            Tambah Menu
+        </button>
+    </div>
+
+    <!-- CART -->
+    <div class="card">
+        <h2>Keranjang</h2>
+        <div id="cartList"></div>
+
+        <h3>Total: Rp <span id="totalHarga">0</span></h3>
+
+        <button id="payBtn" class="btn-primary" style="width:100%; margin-top:10px;">
+            Bayar
+        </button>
+    </div>
+</div>
+
+<!-- MANAGE USER MODAL -->
+<div id="manageUsersModal" class="modal hidden">
+    <div id="manageUsersContent" class="modal-content">
+        
+        <div class="modal-header">
+            <span>Kelola User</span>
+            <button id="closeManageUsers" class="btn-danger">✕</button>
+        </div>
+
+        <div class="modal-body">
+            <div id="usersList"></div>
+
+            <input type="text" id="newUsername" placeholder="Username">
+            <input type="password" id="newPassword" placeholder="Password">
+
+            <select id="newRole">
+                <option value="admin">Admin</option>
+                <option value="kasir">Kasir</option>
+            </select>
+
+            <button id="addUserBtn" class="btn-primary" style="margin-top:10px;">
+                Tambah User
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<!-- ADD + EDIT MENU MODAL -->
+<div id="menuModal" class="modal hidden">
+    <div id="menuModalContent" class="modal-content">
+
+        <div class="modal-header">
+            <span id="menuModalTitle">Tambah Menu</span>
+            <button id="closeMenuModal" class="btn-danger">✕</button>
+        </div>
+
+        <div class="modal-body">
+            <input type="text" id="menuNama" placeholder="Nama Menu">
+            <input type="number" id="menuHarga" placeholder="Harga">
+            <input type="number" id="menuStok" placeholder="Stok">
+
+            <!-- INPUT KATEGORI BARU -->
+            <select id="menuKategori">
+                <option value="makanan">Makanan</option>
+                <option value="minuman">Minuman</option>
+            </select>
+
+            <button id="saveMenuBtn" class="btn-primary" style="margin-top:10px;">
+                Simpan
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<!-- CONFIRM MODAL -->
+<div id="confirmModal" class="modal hidden">
+    <div class="modal-content" id="confirmBox">
+
+        <div class="modal-header">
+            <span>Konfirmasi</span>
+            <button id="confirmClose" class="btn-danger">✕</button>
+        </div>
+
+        <div class="modal-body">
+            <p id="confirmText" style="margin-bottom:12px; font-weight:600;"></p>
+
+            <button id="confirmOK" class="btn-primary">Ya</button>
+            <button id="confirmCancel" class="btn-danger">Tidak</button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- TOAST CONTAINER -->
+<div id="toastContainer"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
