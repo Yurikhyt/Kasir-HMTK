@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Kasir</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Nunito:wght@300;400;600;700&family=Oregano&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            background: #E3E19C;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            width: 360px;
+            padding: 32px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: 3px solid #EEAC10;
+            text-align: center;
+        }
+
+        .logo-img {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            margin: 0 auto 10px auto;
+        }
+
+        .hmtk-text {
+            font-family: 'Oregano', cursive;
+            font-size: 36px;
+            margin-bottom: 25px;
+            color: #083107;
+        }
+
+        h2 {
+            font-family: 'Fjalla One', sans-serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #083107;
+        }
+
+        input {
+            width: 100%;
+            padding: 0 14px;
+            margin-bottom: 14px;
+            border-radius: 8px;
+            border: 2px solid #E3E19C;
+            font-family: 'Nunito', sans-serif;
+            font-size: 16px;
+
+            height: 48px;
+            line-height: 48px;
+            box-sizing: border-box;
+        }
+
+        .pass-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .pass-wrapper input {
+            padding-right: 50px;
+        }
+
+        /* === CENTER 100% === */
+        .toggle-eye {
+            position: absolute;
+            right: 15px;
+            top: 40%;
+            transform: translateY(-50%);
+            height: 22px;
+            width: 22px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            cursor: pointer;
+            
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: #EEAC10;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Fjalla One', sans-serif;
+            font-size: 18px;
+            color: #083107;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <img src="logo_hmtk.png" class="logo-img">
+
+    <div class="hmtk-text">HMTK</div>
+
+    <h2>Login</h2>
+
+    <input type="text" id="loginUser" placeholder="Username">
+
+    <div class="pass-wrapper">
+        <input type="password" id="loginPass" placeholder="Password">
+
+        <!-- GANTI ICON BOOTSTRAP → SVG -->
+        <span class="toggle-eye" id="togglePass">
+            <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                 viewBox="0 0 24 24" fill="none" stroke="#083107" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+                <circle cx="12" cy="12" r="3"/>
+            </svg>
+        </span>
+    </div>
+
+    <button class="btn-login" onclick="doLogin()">Login</button>
+
+</div>
+
+<script src="login.js"></script>
+
+<script>
+    loginUser.addEventListener("keydown", e => {
+        if (e.key === "Enter") loginPass.focus();
+    });
+
+    loginPass.addEventListener("keydown", e => {
+        if (e.key === "Enter") doLogin();
+    });
+</script>
+
+<script>
+    const passInput = document.getElementById("loginPass");
+    const eyeIcon = document.getElementById("eyeIcon");
+
+    let visible = false;
+
+    document.getElementById("togglePass").addEventListener("click", () => {
+        visible = !visible;
+
+        if (visible) {
+            passInput.type = "text";
+            eyeIcon.innerHTML = `
+                <line x1="1" y1="1" x2="23" y2="23"></line>
+                <path d="M10.58 10.58A2 2 0 0 0 12 14a2 2 0 0 0 1.42-.58"/>
+                <path d="M17.94 17.94C16.23 19.23 14.21 20 12 20
+                         5 20 1 12 1 12c1.28-2.33 3.05-4.69 5.32-6.35"/>
+                <path d="M9.88 4.46C10.55 4.16 11.26 4 12 4
+                         c7 0 11 8 11 8a21.77 21.77 0 0 1-2.16 3.19"/>
+            `;
+        } else {
+            passInput.type = "password";
+            eyeIcon.innerHTML = `
+                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+                <circle cx="12" cy="12" r="3"/>
+            `;
+        }
+    });
+</script>
+
+</body>
+</html>
